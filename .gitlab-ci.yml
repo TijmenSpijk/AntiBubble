@@ -1,0 +1,53 @@
+variables:
+  CLI_VERSION: 9.0.5
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  image: trion/ng-cli
+  before_script:
+  - npm ci
+  script:
+  - ng build --prod
+  artifacts:
+   expire_in: 1 day
+   paths:
+    - dist/
+  tags:
+   - docker
+  only:
+   - Development
+   - Master
+
+test:karma:
+  stage: test
+  image: trion/ng-cli-karma:${CLI_VERSION}
+  allow_failure: false
+  before_script:
+    - npm ci
+  script:
+   - ng test --code-coverage --progress false --watch false --browsers=ChromiumHeadless
+  artifacts:
+    paths:
+      - coverage/
+  tags:
+   - docker
+  only:
+   - Development
+   - Master
+
+#test:e2e:
+#  stage: test
+#  image: trion/ng-cli-e2e:${CLI_VERSION}
+#  allow_failure: false
+#  before_script:
+#    - npm ci
+#  script:
+#   - ng e2e
+#  tags:
+#   - docker
+
+# This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  

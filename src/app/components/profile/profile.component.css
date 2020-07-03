@@ -1,0 +1,43 @@
+/*
+ * This program has been developed by students from the bachelor Computer Science at Utrecht University
+ * within the Software Project course. © Copyright Utrecht University (Department of Information and
+ * Computing Sciences)
+ */
+
+.profile-table {
+    border-spacing: 20px 0;
+    margin: 0 auto;
+}
+
+.profile-table td {
+    text-align: left;
+    padding: 5px 0;
+}
+
+.profile-table .top-data {
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .profile-table td {
+        display: table-row;
+    }
+}
+
+mean-avatar-display mat-card img{
+    width: 15%;
+}
+
+.change-password-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .change-password-accordion mat-panel-description {
+        display: none;
+    }
+}
+
+/** This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  */

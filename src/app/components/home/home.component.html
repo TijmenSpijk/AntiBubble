@@ -1,0 +1,98 @@
+<!--
+  ~ This program has been developed by students from the bachelor Computer Science at Utrecht University
+  ~ within the Software Project course. © Copyright Utrecht University (Department of Information and
+  ~ Computing Sciences)
+  -->
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [autoFocus]="false">
+        <mean-sidenav (sidenavClose)="sidenav.close()"></mean-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mean-toolbar (sidenavToggle)="sidenav.toggle()"></mean-toolbar>
+
+        <body>
+            <div class="container-div" fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="space-evenly">
+                <div fxLayout.xs="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+                    <mat-card fxFlex="100%">
+                        <mat-card-header>
+                            <mat-card-title>Welkom!</mat-card-title>
+                            <mat-card-subtitle>
+                                Breaking Bubbles is een online webpagina waar leerlingen zich bewust kunnen worden van
+                                hun
+                                filterbubbel.<br>
+                                Dit wordt bereikt door middel van lessen die in de klas met de docent(e) worden
+                                afgenomen.
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="userDetails?.role == 'teacher'">
+                            <button mat-button class="general-button" (click)="createSession()"> Kies Activiteit
+                            </button>
+                        </mat-card-content>
+                        <mat-card-content class="join-session"
+                            *ngIf="userDetails?.role == 'student' && userDetails?.bubbleInit">
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="pin" placeholder="Sessie code" type="number">
+                            </mat-form-field>
+                            <button mat-button class="general-button" (click)="joinSession()"> Deelnemen aan sessie
+                            </button>
+                        </mat-card-content>
+                        <mat-card-content *ngIf="userDetails?.role == 'student' && !userDetails?.bubbleInit">
+                            <button mat-button class="general-button" (click)="startLabyrinth()"> Start Dwalende Doolhof
+                            </button>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+                    <mat-card fxFlex="40%">
+                        <mat-card-header>
+                            <mat-card-title>Klas updates</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <table class="general-table">
+                                <tr>
+                                    <th>Per1</th>
+                                    <td>Heeft spel X gespeeld!</td>
+                                </tr>
+                                <tr>
+                                    <th>Per2</th>
+                                    <td>Heeft 5 muntjes verdiend!</td>
+                                </tr>
+                                <tr>
+                                    <th>Per3</th>
+                                    <td>Heeft meegedaan aan de laatste klas sessie!</td>
+                                </tr>
+                            </table>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="40%">
+                        <mat-card-header>
+                            <mat-card-title>Scorebord</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <table class="general-table">
+                                <tr *ngFor="let milestone of userDetails?.recentMilestones; let i = index;">
+                                    <td>{{ userDetails?.recentMilestones[4 - i] }}</td>
+                                </tr>
+                            </table>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="20%">
+                        <mat-card-header>
+                            <mat-card-title>Aantal munten</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="number">
+                            {{ userDetails?.currency }}
+                        </mat-card-content>
+                        <a mat-button class="general-link" [routerLink]="'/shop'">Ga naar winkel</a>
+                    </mat-card>
+                </div>
+            </div>
+        </body>
+        <footer class="footer">
+            <p> &copy; Utrecht University (ICS)</p>
+        </footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  -->

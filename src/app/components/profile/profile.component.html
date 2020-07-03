@@ -1,0 +1,144 @@
+<!--
+  ~ This program has been developed by students from the bachelor Computer Science at Utrecht University
+  ~ within the Software Project course. © Copyright Utrecht University (Department of Information and
+  ~ Computing Sciences)
+  -->
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [autoFocus]="false">
+        <mean-sidenav (sidenavClose)="sidenav.close()"></mean-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mean-toolbar (sidenavToggle)="sidenav.toggle()"></mean-toolbar>
+        <body>
+            <div class="container-div" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+                <div fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+                    <mat-card fxFlex="50%">
+                        <mat-card-header>
+                            <mat-card-title>Profiel</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <table class="profile-table">
+                                <tr>
+                                    <td class="top-data">Gebruikersnaam</td>
+                                    <td>{{ userDetails?.firstName }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="top-data">Volledige naam</td>
+                                    <td>{{ userDetails?.firstName }} {{ userDetails?.lastName }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="top-data">E-mail adres</td>
+                                    <td>{{ userDetails?.email }}</td>
+                                </tr>
+                                <tr *ngIf="userDetails?.role == 'student' && userClassTitle != undefined">
+                                    <td class="top-data">Klas</td>
+                                    <td>{{ userClassTitle }}</td>
+                                </tr>
+                            </table>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="50%" *ngIf="userDetails?.role == 'student'">
+                        <mat-card-header>
+                            <mat-card-title>Badges</mat-card-title>
+                            <mat-card-subtitle>Badge met de meeste voortgang</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <table class="general-table">
+                                <tr *ngIf="milestoneShown.name !='Gefeliciteerd'">
+                                    <td>
+                                        <strong>{{ milestoneShown.name }}</strong><br>
+                                        {{ milestoneShown.description }}<br>
+                                        <i>Voortgang:</i>
+                                        {{ userDetails?.milestones[milestoneShown.index] }}/{{ milestoneShown.maxValue }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <mat-card-footer>
+                                <a mat-button class="general-link" [routerLink]="'/badges'">Alle badges</a>
+                            </mat-card-footer>
+                            <br>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly" class="my-custom-theme">
+                    <mat-card fxFlex="50%" *ngIf="userDetails?.role == 'student'">
+                        <mat-card-header>
+                            <mat-card-title>Mijn Bubbel</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mean-bubble-visualisation></mean-bubble-visualisation>
+                            <a mat-button class="general-link" [routerLink]="'/bubble-details'">Meer details</a>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="50%">
+                        <mat-card-header>
+                            <mat-card-title>Avatar</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mean-avatar-display></mean-avatar-display>
+                            <a mat-button class="general-link" [routerLink]="'/avatar'">Avatar aanpassen</a>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <mat-card class="change-password-accordion" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Wachtwoord aanpassen
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Vul je oude en nieuwe wachtwoord in
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <form name="changePasswordForm" [formGroup]="changePasswordForm"
+                                (ngSubmit)="changePassword()">
+                                <table class="change-password-table">
+                                    <tr>
+                                        <mat-form-field>
+                                            <mat-label>Oude wachtwoord</mat-label>
+                                            <input matInput type="password" formControlName="oldPassword">
+                                            <mat-error
+                                                *ngIf="changePasswordForm.get('oldPassword').hasError('required')">
+                                                Wachtwoord is <strong>verplicht</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </tr>
+                                    <tr>
+                                        <mat-form-field>
+                                            <mat-label>Nieuw wachtwoord</mat-label>
+                                            <input matInput type="password" formControlName="newPassword">
+                                            <mat-error
+                                                *ngIf="changePasswordForm.get('newPassword').hasError('required')">
+                                                Wachtwoord is <strong>verplicht</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </tr>
+                                    <tr>
+                                        <mat-form-field>
+                                            <mat-label>Herhaal nieuw wachtwoord</mat-label>
+                                            <input matInput type="password" formControlName="repeatPassword">
+                                            <mat-error
+                                                *ngIf="changePasswordForm.get('repeatPassword').hasError('noPasswordMatch')">
+                                                Wachtwoorden komen niet overeen
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </tr>
+                                </table>
+                                <button mat-button class="general-button" type="submit" [disabled]="!changePasswordForm.valid">Aanpassen</button>
+                            </form>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </mat-card>
+            </div>
+        </body>
+        <footer class="footer">
+            <p> &copy; Utrecht University (ICS)</p>
+        </footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  -->

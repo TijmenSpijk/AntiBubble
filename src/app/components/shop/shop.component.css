@@ -1,0 +1,78 @@
+/*
+ * This program has been developed by students from the bachelor Computer Science at Utrecht University
+ * within the Software Project course. © Copyright Utrecht University (Department of Information and
+ * Computing Sciences)
+ */
+.mat-card-subtitle {
+    font-family: initial !important;
+    /* NOTE: text-fill-color paints the text once more over the actual text. This can have unwanted side effects that should be fixed in local css */
+    -webkit-text-fill-color: initial !important;
+    -webkit-text-stroke: initial !important;
+    paint-order: initial !important;
+    text-shadow: initial !important;
+    color: initial !important;
+}
+
+.welcomeHeader {
+    font-size: xx-large;
+}
+
+.currency {
+    font-size: larger;
+}
+
+mat-card-title {
+   font-size: medium;
+}
+
+.shop-buy-button {
+    width: 40%;
+    background: transparent url("../../../assets/images/Super_Map/Basic_Buttons/Button_blue_Rectangle.png") round;
+}
+
+.category-change-button {
+    height: 75%;
+    width: 75%;
+    padding: 0;
+    min-width: unset;
+}
+
+mat-card img {
+    margin-top: 0;
+    height: 100%;
+    width: 60%;
+}
+
+#buttonHoofddeksel {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Hats.png") round;
+}
+
+#buttonHaar {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Hair.png") round;
+}
+
+#buttonBril {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Glasses.png") round;
+}
+
+#buttonLichaam {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Skincolor.png") round;
+}
+
+#buttonShirt {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Shirt.png") round;
+}
+
+#buttonBroek {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Pants.png") round;
+}
+
+#buttonSchoenen {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Shoes.png") round;
+}
+
+#buttonMedaille {
+    background: transparent url("../../../assets/images/Super_Map/Shop_UI/Button_Medals.png") round;
+}
+
+/** This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  */

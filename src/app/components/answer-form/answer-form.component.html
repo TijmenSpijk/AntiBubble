@@ -1,0 +1,23 @@
+<!--
+  ~ This program has been developed by students from the bachelor Computer Science at Utrecht University
+  ~ within the Software Project course. © Copyright Utrecht University (Department of Information and
+  ~ Computing Sciences)
+  -->
+
+<form *ngIf="userDetails?.role == 'student'" [formGroup]="getAnswerForm" (ngSubmit)="sendAnswer()">
+    <mat-form-field>
+        <mat-label>Vul hier je antwoord in</mat-label>
+        <textarea matInput formControlName="getAnswer" placeholder="[antwoord]" [(ngModel)]="answer" ></textarea>
+    </mat-form-field><br>
+    <button mat-button class="general-button" type="submit" [disabled]="alreadySubmitted">Verstuur</button>
+</form>
+
+<form *ngIf="userDetails?.role == 'teacher'" [formGroup]="sendQuestionsForm" (ngSubmit)="sendQuestion()">
+    <mat-form-field>
+        <mat-label>Vul hier een onderwerp in</mat-label>
+        <textarea matInput formControlName="getQuestion" placeholder="[onderwerp]" [(ngModel)]="question" ></textarea>
+    </mat-form-field><br>
+    <button mat-button class="general-button" type="submit">Verstuur</button>
+</form>
+
+<!-- This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  -->

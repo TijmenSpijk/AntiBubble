@@ -1,0 +1,71 @@
+/*
+ * This program has been developed by students from the bachelor Computer Science at Utrecht University
+ * within the Software Project course. © Copyright Utrecht University (Department of Information and
+ * Computing Sciences)
+ */
+
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-size: auto;
+}
+
+.bodyDiv {
+    height: 100%;
+    width: 70%;
+    display: inline-block;
+}
+
+.matCardHeader {
+    display: inline-block;
+}
+
+.sessionCode,
+.playerCount {
+    top: 10%;
+    right: 3%;
+    float: right;
+    position: absolute;
+    z-index: 100;
+}
+
+.submitTable {
+    margin: 20px;
+}
+
+.sessionTable,
+.submitTable {
+    display: inline-block;
+}
+
+.sessionTable,
+.submitTable th,
+td {
+    padding: 10px;
+}
+
+#teacherPin {
+    font-size: 66px;
+}
+
+#gameChoice {
+    font-size: 20px;
+}
+
+#startButton {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.timeLeft {
+    top: 10%;
+    left: 3%;
+    float: right;
+    position: absolute;
+    z-index: 100;
+}
+/** This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course. © Copyright Utrecht University (Department of Information and Computing Sciences)  */
